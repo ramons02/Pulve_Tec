@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DuCampo — Agropecuária e Materiais para Construção</title>
+  <meta name="description" content="DuCampo: agropecuária, ração, ferragens e materiais de construção, com tecnologia de ponta em drones e aviação agrícola. Sempre ao seu lado, no campo e na cidade.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="src/styles/main.css">
+</head>
+<body>
+  <!-- Foto real de fundo (não depende de WebGL — continua visível mesmo se o
+       drone 3D não carregar, ver main.js) -->
+  <div id="photo-bg"></div>
+
+  <!-- Canvas WebGL por cima da foto: só o drone é renderizado aqui, com fundo
+       transparente. Se WebGL não estiver disponível, main.js só não desenha
+       nele — a foto de fundo continua normalmente. -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <header class="site-header">
+    <div class="logo">
+      <img class="logo-icon" src="src/assets/brand/logo-icon.png" alt="DuCampo" width="40" height="40">
+      <div class="logo-text">
+        <span class="logo-name">DuCampo</span>
+        <span class="logo-tagline">Agropecuária e Materiais para Construção</span>
+      </div>
+    </div>
+    <a class="btn btn-ghost" href="https://wa.me/5594984326905" target="_blank" rel="noopener">
+      (94) 98432-6905
+    </a>
+  </header>
+
+  <main id="app-content">
+    <section class="section" id="hero">
+      <div class="content-box">
+        <h1>Temos a tecnologia<br>que <span class="accent">você</span> precisa</h1>
+        <p>Agropecuária, ração, ferragens e materiais de construção e tecnologia de ponta com drones e aviação agrícola. Tudo em um só lugar.</p>
+        <a class="btn btn-primary" href="https://wa.me/5594984326905" target="_blank" rel="noopener">Fale com a gente</a>
+      </div>
+    </section>
+
+    <section class="section" id="servicos">
+      <div class="content-box">
+        <h2>Drones <span class="accent">&</span> Aviação</h2>
+        <p class="tagline">Pulverização</p>
+        <p>Facilidade e eficiência comprovada escolha o drone para precisão em áreas de difícil acesso, ou o avião agrícola para grandes extensões. A DuCampo cobre os dois.</p>
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="content-box content-box--wide">
+        <h2>Produtos <span class="accent">&</span> Soluções</h2>
+        <p class="tagline">Para o campo e pra cidade</p>
+        <p>Do curral à obra: tudo que sua propriedade e sua construção precisam, num só endereço.</p>
+        <div class="product-grid">
+          <div class="product-item">
+            <h3>Agropecuária</h3>
+            <p>Insumos e produtos pra cuidar do seu plantio e do seu rebanho.</p>
+          </div>
+          <div class="product-item">
+            <h3>Ração</h3>
+            <p>Nutrição de qualidade pra todo tipo de criação.</p>
+          </div>
+          <div class="product-item">
+            <h3>Ferragens</h3>
+            <p>Ferramentas e materiais pra qualquer trabalho.</p>
+          </div>
+          <div class="product-item">
+            <h3>Materiais de Construção</h3>
+            <p>Tudo pra tirar sua obra do papel.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="diferenciais">
+      <div class="content-box">
+        <h2>Mais que clientes,<br><span class="accent">parceiros</span> de sempre</h2>
+        <p>Equipe própria, equipamentos de última geração e atendimento de qualidade sempre ao seu lado, no campo e na cidade.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <div class="content-box">
+        <h2>Vem pra <span class="accent">Du Campo</span></h2>
+        <p>Venha nos visitar temos tudo que você precisa.</p>
+        <div class="contact-links">
+          <a class="btn btn-primary" href="https://wa.me/5594984326905" target="_blank" rel="noopener">
+            WhatsApp (94) 98432-6905
+          </a>
+          <a class="btn btn-ghost" href="https://instagram.com/Ducampo.fda" target="_blank" rel="noopener">
+            @Ducampo.fda
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

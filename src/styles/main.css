@@ -1,0 +1,224 @@
+:root {
+  --bg: #1c2417;
+  --gold: #f2c94c;
+  --green: #4caf7d;
+  --text-muted: #e6dccf;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: var(--bg);
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.accent {
+  color: var(--gold);
+}
+
+/* Foto real de fundo — sempre visível, independe do WebGL. O leve zoom
+   contínuo (Ken Burns) e o parallax de scroll ficam em ScrollAnimation.js,
+   aplicados via transform nesse mesmo elemento. */
+#photo-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  background-image: url('../assets/images/field-hero.jpg');
+  background-size: cover;
+  background-position: center 35%;
+  transform: scale(1.08);
+  will-change: transform;
+}
+
+/* Véu sutil sobre a foto — só o suficiente pra header/texto lerem bem em
+   qualquer ponto do scroll, sem achatar o brilho da imagem. */
+#photo-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(10, 14, 8, 0.45) 0%, rgba(10, 14, 8, 0.15) 25%, rgba(10, 14, 8, 0.15) 75%, rgba(10, 14, 8, 0.5) 100%);
+}
+
+/* Canvas fixo cobrindo a viewport, transparente — só o drone é desenhado aqui */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2rem;
+  /* Sem fundo próprio, o texto das seções (que é mais alto que 100vh em
+     alguns pontos, ex. Produtos) apareceria "vazando" por trás do logo e
+     do botão ao rolar. Cor sólida (não um degradê que cai a 0% dentro da
+     própria altura do header) — um degradê que termina transparente bem
+     onde o header acaba deixa a parte de baixo dele sem cobertura nenhuma,
+     e o texto que rola ali aparece borrado por trás (visível sobretudo em
+     telas de celular, onde o header ocupa uma fatia maior da tela). */
+  background: rgba(10, 14, 8, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo-icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  filter: drop-shadow(0 0 6px rgba(76, 175, 125, 0.45));
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.logo-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.logo-tagline {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #1a1a1a;
+  box-shadow: 0 0 20px rgba(242, 201, 76, 0.35);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Camada de conteúdo acima do 3D */
+#app-content {
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Padding-top folgado: quando o conteúdo (ex. a grade de Produtos) é mais
+     alto que 100vh, a seção rola por baixo do header fixo — sem essa
+     margem, o texto passa a sobrepor o header em vez de ficar atrás dele. */
+  padding: 6.5rem 2rem 2.5rem;
+}
+
+.content-box {
+  background: rgba(18, 12, 20, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 206, 133, 0.25);
+  padding: 2.5rem;
+  border-radius: 16px;
+  max-width: 560px;
+}
+
+.content-box--wide {
+  max-width: 760px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.product-item h3 {
+  font-size: 1.05rem;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+}
+
+.product-item p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+.content-box h1, .content-box h2 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.content-box .tagline {
+  color: var(--green);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.content-box p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .site-header { padding: 1rem 1.25rem; }
+  .content-box h1, .content-box h2 { font-size: 1.75rem; }
+  .logo-tagline { display: none; }
+  .section { padding: 5.5rem 1.25rem 2rem; }
+}
